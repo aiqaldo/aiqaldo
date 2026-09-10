@@ -24,3 +24,6 @@ if (document.readyState === 'loading') {
 } else {
   setupAudio();
 }
+<!-- Panggil fail audio luar -->
+  <script src="audio.js"></script>
+</body>
