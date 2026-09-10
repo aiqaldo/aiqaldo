@@ -1,7 +1,4 @@
 // Pengendali Audio Background
-  <script src="audio.js"></script>
-</body>
-
 function setupAudio() {
   const bgMusic = document.getElementById('bgMusic');
 
@@ -21,7 +18,9 @@ function setupAudio() {
     window.addEventListener('touchstart', playMusic, { once: true });
   }
 }
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', setupAudio);
 } else {
   setupAudio();
+}
