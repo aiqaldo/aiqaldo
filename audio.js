@@ -1,5 +1,5 @@
 // Pengendali Audio Background
-document.addEventListener('DOMContentLoaded', () => {
+function setupAudio() {
   const bgMusic = document.getElementById('bgMusic');
 
   if (bgMusic) {
@@ -9,12 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
       bgMusic.play().then(() => {
         console.log("Muzik background berjaya dimainkan");
       }).catch(err => {
-        console.log("Muzik tidak dapat dimainkan secara automatik:", err);
+        console.log("Muzik tidak dapat dimainkan:", err);
       });
     }
 
-    // Mainkan muzik sebaik sahaja pengguna menyentuh/klik di mana-mana skrin
-    document.body.addEventListener('click', playMusic, { once: true });
-    document.body.addEventListener('touchstart', playMusic, { once: true });
+    // Guna window supaya tidak bergantung pada body sahaja
+    window.addEventListener('click', playMusic, { once: true });
+    window.addEventListener('touchstart', playMusic, { once: true });
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupAudio);
+} else {
+  setupAudio();
+}
