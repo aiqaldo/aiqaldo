@@ -17,9 +17,6 @@ function setupAudio() {
     window.addEventListener('click', playMusic, { once: true });
     window.addEventListener('touchstart', playMusic, { once: true });
   }
- (Panggil fail audio luar)
-  <script src="audio.js"></script>
-</body>
 }
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', setupAudio);
