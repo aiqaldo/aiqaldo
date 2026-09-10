@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Cinta Hati Ku - Aesthetic Edition</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #1e1115 0%, #0a0507 100%);
+      font-family: 'Cormorant Garamond', serif;
+      overflow: hidden;
+      perspective: 1200px;
+      color: #e2d7ce;
+    }
+
+    /* Soft ambient background aura */
+    .glow-aura {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(184, 131, 143, 0.15) 0%, rgba(0,0,0,0) 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Ambient Floating Particles */
+    .bg-heart {
+      position: absolute;
+      color: rgba(224, 187, 192, 0.25);
+      font-size: 16px;
+      user-select: none;
+      pointer-events: none;
+      animation: floatBg 12s infinite linear;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    @keyframes floatBg {
+      0% {
+        transform: translateY(105vh) scale(0.8) rotate(0deg);
+        opacity: 0;
+      }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.6; }
+      100% {
+        transform: translateY(-10vh) scale(1.2) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    /* Envelope Container - Aesthetic Muted Rosewood & Wax Seal Tone */
+    .envelope-wrapper {
+      position: relative;
+      width: 360px;
+      height: 240px;
+      background: linear-gradient(145deg, #4a2830 0%, #2c161c 100%);
+      border-radius: 8px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 40px rgba(139, 87, 100, 0.15);
+      cursor: pointer;
+      transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    /* Envelope Flap */
+    .envelope-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 180px solid transparent;
+      border-right: 180px solid transparent;
+      border-top: 140px solid #5a323b;
+      transform-origin: top;
+      transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 3;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5));
+    }
+
+    /* Aesthetic Wax Seal Stamp */
+    .stamp {
+      position: absolute;
+      width: 68px;
+      height: 68px;
+      background: radial-gradient(circle, #8c3b48 0%, #541e27 100%);
+      border: 1px solid rgba(243, 229, 215, 0.4);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 4;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.5s ease;
+      animation: pulseGlow 3s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1); box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 10px rgba(140, 59, 72, 0.3); }
+      100% { transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.7), 0 0 20px rgba(140, 59, 72, 0.6); }
+    }
+
+    .fingerprint-heart {
+      width: 32px;
+      height: 32px;
+      fill: #f5eae1;
+      opacity: 0.9;
+    }
+
+    /* Open State Envelope */
+    .envelope-wrapper.open::before {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    /* Mini Letter inside Envelope */
+    .mini-letter {
+      position: absolute;
+      width: 300px;
+      height: 170px;
+      background: #fcf8f2;
+      border-radius: 6px;
+      top: 35px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(0);
+      transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0.6s ease 0.3s;
+      border: 1px solid #e0d5c1;
+    }
+
+    .envelope-wrapper.open .mini-letter {
+      opacity: 1;
+      transform: translateY(-95px);
+    }
+
+    /* Minimalist Aesthetic "Buka Surat" Button */
+    .open-me-btn {
+      padding: 10px 24px;
+      background: #3b2026;
+      color: #f3e5d8;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: all 0.4s ease;
+    }
+
+    .open-me-btn:hover {
+      background: #542d36;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      letter-spacing: 4px;
+    }
+
+    /* Aesthetic Parchment/Paper Modal */
+    .full-letter-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.85);
+      width: 90%;
+      max-width: 500px;
+      max-height: 85vh;
+      background: #faf6f0;
+      padding: 50px 40px 40px;
+      border-radius: 8px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.8), 0 0 40px rgba(212, 175, 55, 0.08);
+      z-index: 100;
+      opacity: 0;
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+      color: #2b221e;
+      line-height: 1.9;
+      pointer-events: none;
+      box-sizing: border-box;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    /* Elegant Custom Scrollbar */
+    .full-letter-modal::-webkit-scrollbar {
+      width: 4px;
+    }
+    .full-letter-modal::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.03);
+    }
+    .full-letter-modal::-webkit-scrollbar-thumb {
+      background: #c5b299;
+      border-radius: 4px;
+    }
+
+    /* Minimalist Delicate Inner Border */
+    .full-letter-modal::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border: 1px solid rgba(184, 153, 116, 0.3);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .full-letter-modal.zoom-in {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .full-letter-modal .date-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #9e846b;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .full-letter-modal h2 {
+      font-family: 'Alex Brush', cursive;
+      font-size: 38px;
+      margin-bottom: 25px;
+      color: #5c2c35;
+      text-align: center;
+      font-weight: normal;
+    }
+
+    .full-letter-modal p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 400;
+      text-align: justify;
+      color: #382c26;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .full-letter-modal .signature {
+      font-family: 'Alex Brush', cursive;
+      font-size: 30px;
+      text-align: right;
+      margin-top: 30px;
+      color: #5c2c35;
+    }
+
+    /* Aesthetic Subtle Scroll Hint */
+    .scroll-hint {
+      text-align: center;
+      margin-top: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      color: #a38c75;
+      text-transform: uppercase;
+      animation: bounceHint 2s infinite ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.8;
+    }
+
+    @keyframes bounceHint {
+      0% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(4px); opacity: 0.9; }
+      100% { transform: translateY(0); opacity: 0.5; }
+    }
+
+    /* Delicate Soft Sparkle & Heart Particles Burst */
+    .particle {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      pointer-events: none;
+      z-index: 250;
+      animation: flyOutFromPaper 2.4s cubic-bezier(0.12, 0.8, 0.32, 1) forwards;
+      user-select: none;
+      font-family: sans-serif;
+    }
+
+    @keyframes flyOutFromPaper {
+      0% {
+        transform: translate(-50%, -50%) scale(0.2);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.85;
+      }
+      80% {
+        opacity: 0.7;
+        transform: translate(calc(-50% + var(--vx)), calc(-50% + var(--vy))) scale(var(--sc));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--vx) * 1.2), calc(-50% + var(--vy) * 1.2)) scale(calc(var(--sc) * 1.2));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-aura"></div>
+
+  <!-- Audio Muzik Latar Belakang -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="video_1.mp4" type="video/mp4">
+  </audio>
+
+  <!-- Ambient Floating Background Particles -->
+  <div id="bgHeartsContainer"></div>
+
+  <!-- Aesthetic Rosewood Envelope -->
+  <div class="envelope-wrapper" id="envelope">
+    <div class="stamp" id="stamp" title="Sentuh untuk buka">
+      <svg class="fingerprint-heart" viewBox="0 0 24 24">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    </div>
+
+    <div class="mini-letter">
+      <button class="open-me-btn" id="openMeBtn">Buka Surat</button>
+    </div>
+  </div>
+
+  <!-- Full Aesthetic Parchment Letter -->
+  <div class="full-letter-modal" id="fullLetter">
+    <div class="date-tag">✦ Untuk Yang Teristimewa ✦</div>
+    <h2>Kehadapan Cinta Hati Ku</h2>
+    
+    <p>
+      Minta maaf ya kalau bby masih banyak kekurangan dan tak sempurna macam mana yang sayang harapkan. 
+      Bby minta maaf juga sebab tak mampu jadi macam boyfriend orang lain, dan selalu buat sayang rasa geram dengan sikap <i>nonchalant</i> bby ni.
+    </p>
+    
+    <p>
+      Bukan bby tak ambil kisah, cuma kadang-kadang bby tak pandai nak luahkan atau tunjukkan perasaan. Tapi percayalah, bby betul-betul sayang dekat sayang dan bby akan cuba perlahan-lahan untuk perbaiki mana yang kurang. Maafkan bby ya?
+    </p>
+
+    <p>
+      Terima kasih sebab sentiasa ada dengan bby dalam susah dan senang, sabar dengan perangai bby, dan terima bby seadanya. Sayang adalah anugerah terindah dalam hidup bby. Bby berjanji akan sentiasa hargai sayang sampai bila-bila.
+    </p>
+
+    <div class="signature">Dengan ikhlas, bby ❤️</div>
+    
+    <div class="scroll-hint">
+      <span>↓ leret untuk membaca ↓</span>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const stamp = document.getElementById('stamp');
+    const openMeBtn = document.getElementById('openMeBtn');
+    const fullLetter = document.getElementById('fullLetter');
+    const bgMusic = document.getElementById('bgMusic');
+
+    bgMusic.volume = 0.8;
+
+    // Ambient floating subtle aesthetic symbols
+    const bgContainer = document.getElementById('bgHeartsContainer');
+    const symbols = ['✦', '✧', '♡', '🌸', '✨'];
+    for (let i = 0; i < 20; i++) {
+      const h = document.createElement('div');
+      h.className = 'bg-heart';
+      h.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.animationDelay = (Math.random() * 10) + 's';
+      h.style.animationDuration = (8 + Math.random() * 8) + 's';
+      h.style.fontSize = (12 + Math.random() * 8) + 'px';
+      bgContainer.appendChild(h);
+    }
+
+    function playMusic() {
+      bgMusic.play().catch(err => {
+        console.log("Autoplay disekat pelayar:", err);
+      });
+    }
+
+    // 1. Sentuh Setem Cap Jari
+    stamp.addEventListener('click', (e) => {
+      e.stopPropagation();
+      envelope.classList.add('open');
+      stamp.style.opacity = '0';
+      stamp.style.pointerEvents = 'none';
+      playMusic();
+    });
+
+    // 2. Tekan "Buka Surat"
+    openMeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      
+      envelope.style.opacity = '0';
+      envelope.style.transform = 'scale(0.85) translateY(20px)';
+      playMusic();
+
+      setTimeout(() => {
+        envelope.style.display = 'none';
+        fullLetter.classList.add('zoom-in');
+        createPaperKissBurst();
+      }, 400);
+    });
+
+    // Animasi Soft Sparkles & Hearts Burst
+    function createPaperKissBurst() {
+      const particles = ['🤍', '✨', '🌸', '💖', '✦', '💌'];
+      const totalParticles = 70;
+
+      for (let i = 0; i < totalParticles; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.innerText = particles[Math.floor(Math.random() * particles.length)];
+        
+        const scaleVal = (Math.random() * 1.2 + 0.8).toFixed(2);
+        particle.style.setProperty('--sc', scaleVal);
+        particle.style.fontSize = (Math.random() * 14 + 16) + 'px';
+        particle.style.animationDelay = (Math.random() * 0.3) + 's';
+
+        const spreadX = (Math.random() - 0.5) * 1000 + 'px';
+        const spreadY = (Math.random() - 0.5) * 800 + 'px';
+        
+        particle.style.setProperty('--vx', spreadX);
+        particle.style.setProperty('--vy', spreadY);
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 2500);
+      }
+    }
+  </script>
+</body>
+</html>
