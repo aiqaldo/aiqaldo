@@ -1,4 +1,8 @@
 // Pengendali Audio Background
+<!-- Panggil fail audio luar -->
+  <script src="audio.js"></script>
+</body>
+
 function setupAudio() {
   const bgMusic = document.getElementById('bgMusic');
 
