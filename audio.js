@@ -1,5 +1,4 @@
 // Pengendali Audio Background
-<!-- Panggil fail audio luar -->
   <script src="audio.js"></script>
 </body>
 
